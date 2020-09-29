@@ -1,0 +1,13 @@
+## 内置类型
+### 1、值类型
+```go
+bool
+int(32 or 64),int8,int16,int32,int64
+uint(32 or 64),uint8(byte),uint16,uint32,uint64
+float32,float64
+string
+complex64,complex128
+array -- 固定长度的数组
+```
+### 2、引用类型（指针类型）
+
