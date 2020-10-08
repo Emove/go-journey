@@ -1,8 +1,8 @@
+package code
 /*
  * @author: Emove
  * @date: Do not edit
  */
-package main
 
 import "fmt"
 
@@ -11,7 +11,7 @@ var arr1 = [5]int{1, 2, 3, 4, 5}
 var arr2 = [...]int{1, 2, 3, 4, 5, 6}
 var str = [5]string{3: "helloworld", 4: "emove"}
 
-func main() {
+func ArrayPrint() {
 	a := [3]int{1, 2}
 	b := [...]int{1, 2, 3, 4}
 	c := [5]int{2: 100, 4: 200}
