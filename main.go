@@ -12,6 +12,8 @@ import (
 	"fmt"
 	"go-demo/basis/bulit_in/code"
 	"go-demo/basis/bulit_in/function"
+	"go-demo/basis/bulit_in/method"
+	"go-demo/basis/bulit_in/oop"
 )
 
 func main() {
@@ -22,8 +24,11 @@ func main() {
 	// testMap()
 	// testStruct()
 	// testSwitch()
+	// testFunction()
+	// testDefer()
+	// testError()
 	// testMethod()
-	testDefer()
+	testOo()
 }
 
 func testConsts() {
@@ -81,7 +86,7 @@ func testSwitch() {
 	code.Test()
 }
 
-func testMethod() {
+func testFunction() {
 	// function.TestAnonymousFunc()
 	// result := function.Multi(1, 2)
 	// fmt.Println(result)
@@ -111,4 +116,79 @@ func testDefer() {
 	// function.ErrTest()
 	// function.CloseHttpBodyTest()
 	function.CloseFileTest()
+}
+
+func testError() {
+	// function.PanicTest()
+	// function.PanicWhenSendData2ClosedChannel()
+	// function.MultiDeferPanicTest()
+	// function.MultiDeferPanicTest2()
+	// function.AnonymousDeferTest()
+	// function.AnonymousFuncTest(2, 2)
+	// defer func() {
+	// 	fmt.Println(recover())
+	// }()
+	// switch z, err := function.ErrorWhenDivTest(10, 1); err {
+	// case nil:
+	// 	fmt.Println(z)
+	// case function.ErrorDivByZero:
+	// 	panic(err)
+	// }
+	// function.Try(func() {
+	// 	fmt.Println("执行try代码块")
+	// 	fmt.Println("抛出异常panic")
+	// 	panic("throw panic")
+	// }, func(err interface{}) {
+	// 	fmt.Printf("catch error:%#v\n", err)
+	// })
+	// area, err := function.GetCircleArea(-2)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(area)
+
+	err := function.TryOpen("book.txt")
+	if err != nil {
+		switch v := err.(type) {
+		case *function.PathError:
+			fmt.Println(v)
+		default:
+		}
+	}
+}
+
+func testMethod() {
+	// user := &method.User{
+	// 	Name: "emove",
+	// 	Age:  20,
+	// }
+	// fmt.Printf("address: %p\n", user)
+	// user.Values()
+	// user.Pointer()
+	manager := method.Manager{
+		method.User{
+			Name: "Emove",
+			Age:  20,
+		},
+	}
+	manager.Values()
+	manager.Pointer()
+	m1 := &manager
+	m1.Values()
+	m1.Pointer()
+
+	// 隐式传递reciver
+	valuesMethod := m1.Values
+	valuesMethod()
+
+	// 显式传递reciver
+	pointerMehtod := (*method.User).Pointer
+	pointerMehtod(&method.User{
+		Name: "Emove",
+		Age:  20,
+	})
+}
+
+func testOo() {
+	oop.NewStudentTest()
 }
