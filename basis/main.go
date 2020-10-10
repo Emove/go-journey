@@ -2,18 +2,14 @@
  * @author: Emove
  * @date: Do not edit
  */
-/*
- * @author: Emove
- * @date: Do not edit
- */
 package main
 
 import (
+	"basis/bulit_in/code"
+	"basis/bulit_in/function"
+	"basis/bulit_in/method"
+	"basis/bulit_in/oop"
 	"fmt"
-	"go-demo/basis/bulit_in/code"
-	"go-demo/basis/bulit_in/function"
-	"go-demo/basis/bulit_in/method"
-	"go-demo/basis/bulit_in/oop"
 )
 
 func main() {
