@@ -2,6 +2,7 @@ package code
 
 import (
 	"fmt"
+	"time"
 )
 
 // NoBuffChanTest 没有缓存的通道
@@ -70,6 +71,7 @@ func counter(out chan<- int) {
 func squarer(out chan<- int, in <-chan int) {
 	for i := range in {
 		out <- i * i
+		time.Sleep(10 * time.Microsecond)
 	}
 	close(out)
 }

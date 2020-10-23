@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../concurrent/code"
+	"concurrent/code"
 )
 
 func main() {

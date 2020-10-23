@@ -5,10 +5,10 @@
 package main
 
 import (
-	"../basis/bulit_in/code"
-	"../basis/bulit_in/function"
-	"../basis/bulit_in/method"
-	"../basis/bulit_in/oop"
+	"basis/bulit_in/code"
+	"basis/bulit_in/function"
+	"basis/bulit_in/method"
+	"basis/bulit_in/oop"
 	"fmt"
 )
 
