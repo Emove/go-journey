@@ -16,15 +16,16 @@ func main() {
 	fmt.Println("this is main function")
 	// testConsts()
 	// testIota()
-	// testSlice()
+	testSlice()
 	// testMap()
 	// testStruct()
 	// testSwitch()
 	// testFunction()
 	// testDefer()
 	// testError()
-	// testMethod()
-	testOo()
+	//testMethod()
+	//testOo()
+	//testSelect()
 }
 
 func testConsts() {
@@ -40,7 +41,7 @@ func testIota() {
 }
 
 func testSlice() {
-	// code.CreateSlice()
+	code.CreateSlice()
 	// code.PrintVariable()
 	// code.PrintCreateByMake()
 	// code.PrintModify()
@@ -51,7 +52,7 @@ func testSlice() {
 	// code.ForEachSliceTest()
 	// code.SliceResizeTest()
 	// code.SliceStringTest()
-	code.SliceChangeStringTest2()
+	//code.SliceChangeStringTest2()
 }
 
 func testMap() {
@@ -173,7 +174,7 @@ func testMethod() {
 	m1.Values()
 	m1.Pointer()
 
-	// 隐式传递reciver
+	/*// 隐式传递reciver
 	valuesMethod := m1.Values
 	valuesMethod()
 
@@ -182,9 +183,18 @@ func testMethod() {
 	pointerMehtod(&method.User{
 		Name: "Emove",
 		Age:  20,
-	})
+	})*/
 }
 
 func testOo() {
 	oop.NewStudentTest()
+}
+
+func testSelect() {
+	ch := make(chan int)
+	go code.BreakSelectTest(ch)
+
+	for i := 0; i < 10; i++ {
+		ch <- i
+	}
 }

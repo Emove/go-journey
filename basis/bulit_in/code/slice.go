@@ -8,7 +8,7 @@ func CreateSlice() {
 
 	if s1 == nil {
 		fmt.Println("s1 is nil")
-	}else {
+	} else {
 		fmt.Println("s1 is not nil")
 	}
 
@@ -28,18 +28,18 @@ func CreateSlice() {
 
 	// 5、从数组切片
 	arr := [5]int{1, 2, 3, 4, 5}
-	var s6[] int
+	//var s6[] int
 	// 包前不包后
-	s6 = arr[1:4]
-	fmt.Println(s6)
+	//s6 = arr[1:4]
+	fmt.Println(arr[:1])
 }
 
-var arr = [...]int{0,1,2,3,4,5,6,7,8,9}
-var slice0 []int = arr[2: 8]
-var slice1 []int = arr[: 6]
+var arr = [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+var slice0 []int = arr[2:8]
+var slice1 []int = arr[:6]
 var slice2 []int = arr[5:]
-var slice3 []int = arr[:len(arr) - 1]
-var slice4 = arr[:len(arr) - 1]
+var slice3 []int = arr[:len(arr)-1]
+var slice4 = arr[:len(arr)-1]
 
 func PrintVariable() {
 	fmt.Printf("全局变量： arr %v\n", arr)
@@ -50,13 +50,13 @@ func PrintVariable() {
 	fmt.Printf("全局变量： slice4 %v\n", slice4)
 
 	fmt.Println("-----------------------------------")
-	arr := [...]int{0,1,2,3,4,5,6,7,8,9}
-	slice0 := arr[2: 8]
-	slice1 := arr[: 6]
+	arr := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	slice0 := arr[2:8]
+	slice1 := arr[:6]
 	slice2 := arr[5:]
 	slice3 := arr[:]
-	slice4 := arr[0:len(arr) - 1]
-	
+	slice4 := arr[0 : len(arr)-1]
+
 	fmt.Printf("局部变量 arr %v\n", arr)
 	fmt.Printf("局部变量 slice0 %v\n", slice0)
 	fmt.Printf("局部变量 slice1 %v\n", slice1)
@@ -67,7 +67,7 @@ func PrintVariable() {
 
 func PrintCreateByMake() {
 	// var slice []type = make([]type, len)
-    // slice  := make([]type, len)
+	// slice  := make([]type, len)
 	// slice  := make([]type, len, cap)
 	var slice01 []int = make([]int, 10)
 	var slice02 = make([]int, 10)
@@ -78,7 +78,7 @@ func PrintCreateByMake() {
 }
 
 func PrintModify() {
-	data := [...]int{0,1,2,3,4,5}
+	data := [...]int{0, 1, 2, 3, 4, 5}
 	s := data[2:4]
 	s[0] += 100
 	s[1] += 200
@@ -93,7 +93,7 @@ func PrintModify() {
 }
 
 func PrintInit() {
-	s1 := []int{0,1,2,3, 8:100}
+	s1 := []int{0, 1, 2, 3, 8: 100}
 	fmt.Println(s1)
 
 	// 指定len和cap
@@ -120,7 +120,7 @@ func AppendTest() {
 
 	var b = []int{4, 5, 6}
 
-	c := append(a,b...)
+	c := append(a, b...)
 	fmt.Printf("slice c : %v\n", c)
 
 	d := append(c, 7)
@@ -134,7 +134,7 @@ func AppendTest() {
 }
 
 func AppendOutOfCapTest() {
-	data := [...]int{0,1,2,3,4,5,10:10}
+	data := [...]int{0, 1, 2, 3, 4, 5, 10: 10}
 	s := data[:2:3]
 	fmt.Printf("slice s: %v\n", s)
 	// 一次append两个值，超出cap限制
@@ -148,7 +148,7 @@ func SliceAssignRuleTest() {
 	s := make([]int, 0, 1)
 	c := cap(s)
 
-	for i:= 0; i < 50; i++ {
+	for i := 0; i < 50; i++ {
 		s = append(s, i)
 		if n := cap(s); n > c {
 			fmt.Printf("cap %d -> %d\n", c, n)
@@ -182,9 +182,9 @@ func ForEachSliceTest() {
 func SliceResizeTest() {
 	var a = []int{1, 2, 3, 4, 5}
 	fmt.Printf("slice a: %v, len: %v\n", a, len(a))
-	b := a[1: 2]
+	b := a[1:2]
 	fmt.Printf("slice b: %v, len: %v\n", b, len(b))
-	c := b[0: 3]
+	c := b[0:3]
 	fmt.Printf("slice c: %v, len: %v\n", c, len(c))
 
 	fmt.Println(&a, &b, &c)

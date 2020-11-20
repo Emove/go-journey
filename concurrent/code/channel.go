@@ -81,3 +81,7 @@ func printer(in <-chan int) {
 		fmt.Println(i)
 	}
 }
+
+func CustomerCh() {
+	//ch:=make(chan cmd.Cmd)
+}
