@@ -1,11 +1,21 @@
-package main
+package code
 
 import (
 	"fmt"
 	"reflect"
 )
 
-func main() {
+type User struct {
+	Name string
+	Age  int
+	Id   string
+}
+
+func (u *User) SayHello() {
+	fmt.Println("I'm " + u.Name + ", Id is " + u.Id + ". Nice to meet you! ")
+}
+
+func TestReflect() {
 	tonydon := &User{"TangXiaodong", 100, "0000123"}
 	object := reflect.ValueOf(tonydon)
 	myref := object.Elem()
@@ -17,14 +27,4 @@ func main() {
 	tonydon.SayHello()
 	v := object.MethodByName("SayHello")
 	v.Call([]reflect.Value{})
-}
-
-type User struct {
-	Name string
-	Age  int
-	Id   string
-}
-
-func (u *User) SayHello() {
-	fmt.Println("I'm " + u.Name + ", Id is " + u.Id + ". Nice to meet you! ")
 }
