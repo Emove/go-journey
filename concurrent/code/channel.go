@@ -84,4 +84,5 @@ func printer(in <-chan int) {
 
 func CustomerCh() {
 	//ch:=make(chan cmd.Cmd)
+	//safeSend()
 }
