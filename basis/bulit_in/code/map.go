@@ -30,6 +30,8 @@ func DeleteFormMapTest() {
 	scoreMap["lisi"] = 100
 	scoreMap["wangwu"] = 50
 	delete(scoreMap, "lisi")
+	delete(scoreMap, "zhangsan")
+	delete(scoreMap, "wangwu")
 	for key, value := range scoreMap {
 		fmt.Println(key, value)
 	}
@@ -49,7 +51,7 @@ func MapSliceTest() {
 	mapSlice[1]["name"] = "lisi"
 	mapSlice[1]["password"] = "654321"
 	mapSlice[1]["address"] = "guangzhou"
-	for index,value := range mapSlice{
+	for index, value := range mapSlice {
 		fmt.Printf("index: %v value:%v \n", index, value)
 	}
 }
@@ -63,7 +65,7 @@ func SliceMapTest() {
 	if !ok {
 		value = make([]string, 0, 2)
 	}
-	value = append(value, "北京","上海")
+	value = append(value, "北京", "上海")
 	sliceMap[key] = value
 	fmt.Println(sliceMap)
 }

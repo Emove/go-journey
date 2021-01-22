@@ -11,6 +11,15 @@ type User struct {
 	Id   string
 }
 
+type Unexported struct {
+	id   string
+	name string
+}
+
+func (target *Unexported) SetID(id string) {
+	target.id = id
+}
+
 func (u *User) SayHello() {
 	fmt.Println("I'm " + u.Name + ", Id is " + u.Id + ". Nice to meet you! ")
 }
@@ -27,4 +36,23 @@ func TestReflect() {
 	tonydon.SayHello()
 	v := object.MethodByName("SayHello")
 	v.Call([]reflect.Value{})
+}
+
+func SetValue() {
+	target := &Unexported{}
+	//typeOf := reflect.TypeOf(target)
+	//idField, exist := typeOf.FieldByName("id")
+	//if exist {
+	//	fmt.Println(idField.Type.String())
+	//}
+	elem := reflect.ValueOf(target).Elem()
+	name := elem.FieldByName("id")
+	//fmt.Println("id：", )
+	fmt.Println("id type:", name.Kind().String())
+	valueOf := reflect.ValueOf(&target).Elem()
+	method := valueOf.MethodByName("SetID")
+	idValue := make([]reflect.Value, 1)
+	idValue[0] = reflect.ValueOf("1")
+	method.Call(idValue)
+	fmt.Printf("%#v", target)
 }

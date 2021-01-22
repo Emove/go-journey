@@ -8,6 +8,8 @@ import (
 func main() {
 	//code.CancelContext()
 	//code.DeadlineContext()
-	code.TimeoutContext()
+	//code.TimeoutContext()
+	//code.SetValue()
+	code.LogInfo()
 	time.Sleep(5 * time.Second)
 }

@@ -16,8 +16,8 @@ func main() {
 	fmt.Println("this is main function")
 	// testConsts()
 	// testIota()
-	testSlice()
-	// testMap()
+	//testSlice()
+	//testMap()
 	// testStruct()
 	// testSwitch()
 	// testFunction()
@@ -26,6 +26,7 @@ func main() {
 	//testMethod()
 	//testOo()
 	//testSelect()
+	TestChannel()
 }
 
 func testConsts() {
@@ -58,9 +59,9 @@ func testSlice() {
 func testMap() {
 	// code.IfExistsTest()
 	// code.ForEachMapTest()
-	// code.DeleteFormMapTest()
+	code.DeleteFormMapTest()
 	// code.MapSliceTest()
-	code.SliceMapTest()
+	//code.SliceMapTest()
 }
 
 func testStruct() {
@@ -197,4 +198,8 @@ func testSelect() {
 	for i := 0; i < 10; i++ {
 		ch <- i
 	}
+}
+
+func TestChannel() {
+	code.LenOfChannel()
 }

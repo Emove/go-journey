@@ -1,0 +1,65 @@
+package main
+
+import (
+	"fmt"
+	"github.com/go-redis/redis/v8"
+	"time"
+)
+
+/**
+ * @author Emove
+ * @date 2021/1/8
+ */
+func main() {
+	// 启动redis实例
+	client := redis.NewClient(&redis.Options{
+		Addr:         "192.168.246.129:6379",
+		DB:           0,
+		DialTimeout:  10 * time.Second,
+		ReadTimeout:  30 * time.Second,
+		WriteTimeout: 30 * time.Second,
+		PoolSize:     100,
+		PoolTimeout:  30 * time.Second,
+	})
+	createKeys(client)
+	scanKeys(client)
+}
+
+func createKeys(client *redis.Client) {
+	key1 := "topic:00001:jc_psb0001"
+	client.Del(client.Context(), key1)
+	client.HSet(client.Context(), key1, "key001", "value001")
+	client.HSet(client.Context(), key1, "key002", "value002")
+
+	key2 := "topic:00001:jc_psb0002"
+	client.Del(client.Context(), key2)
+	client.HSet(client.Context(), key2, "key003", "value003")
+	client.HSet(client.Context(), key2, "key004", "value004")
+
+	key3 := "topic:00002:jc_psb0001"
+	client.Del(client.Context(), key3)
+	client.HSet(client.Context(), key3, "key005", "value005")
+	client.HSet(client.Context(), key3, "key006", "value006")
+
+	key4 := "topic:00002:jc_psb0002"
+	client.Del(client.Context(), key4)
+	client.HSet(client.Context(), key4, "key007", "value007")
+	client.HSet(client.Context(), key4, "key008", "value008")
+}
+
+func scanKeys(client *redis.Client) {
+	keys := client.Keys(client.Context(), "topic:*")
+	for _, key := range keys.Val() {
+		scanValues(key, client)
+	}
+}
+
+func scanValues(key string, client *redis.Client) {
+	length := client.HLen(client.Context(), key)
+	scan := client.HScan(client.Context(), key, 0, "", length.Val())
+	iterator := scan.Iterator()
+
+	for iterator.Next(client.Context()) {
+		fmt.Println(iterator.Val())
+	}
+}
