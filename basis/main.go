@@ -10,6 +10,7 @@ import (
 	"basis/bulit_in/method"
 	"basis/bulit_in/oop"
 	"fmt"
+	"unicode"
 )
 
 func main() {
@@ -26,7 +27,13 @@ func main() {
 	//testMethod()
 	//testOo()
 	//testSelect()
-	TestChannel()
+	//TestChannel()
+	fmt.Println(unicode.IsPunct('，'))
+	fmt.Println(unicode.IsPunct(','))
+	fmt.Println(unicode.IsPunct('!'))
+	fmt.Println(unicode.IsPunct('a'))
+	fmt.Println(unicode.IsPunct('9'))
+	fmt.Println(unicode.IsPunct('。'))
 }
 
 func testConsts() {
@@ -42,7 +49,7 @@ func testIota() {
 }
 
 func testSlice() {
-	code.CreateSlice()
+	//code.CreateSlice()
 	// code.PrintVariable()
 	// code.PrintCreateByMake()
 	// code.PrintModify()
@@ -54,6 +61,7 @@ func testSlice() {
 	// code.SliceResizeTest()
 	// code.SliceStringTest()
 	//code.SliceChangeStringTest2()
+	code.AppendAndForeachTest()
 }
 
 func testMap() {

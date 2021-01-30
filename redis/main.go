@@ -54,12 +54,23 @@ func scanKeys(client *redis.Client) {
 	}
 }
 
-func scanValues(key string, client *redis.Client) {
-	length := client.HLen(client.Context(), key)
-	scan := client.HScan(client.Context(), key, 0, "", length.Val())
+func scanValues(hashKey string, client *redis.Client) {
+	length := client.HLen(client.Context(), hashKey)
+	scan := client.HScan(client.Context(), hashKey, 0, "", length.Val())
 	iterator := scan.Iterator()
 
+	var key string
+	var value string
+	count := 0
 	for iterator.Next(client.Context()) {
-		fmt.Println(iterator.Val())
+		count++
+		if count%2 == 1 {
+			key = iterator.Val()
+		} else {
+			value = iterator.Val()
+			fmt.Printf("hashKey: %s, key: %s, value: %s\n", hashKey, key, value)
+			client.HDel(client.Context(), hashKey, key)
+			count = 0
+		}
 	}
 }

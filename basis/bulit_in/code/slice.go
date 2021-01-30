@@ -218,3 +218,24 @@ func SliceChangeStringTest2() {
 	s = s[0:6]
 	fmt.Println(string(s))
 }
+
+func AppendAndForeachTest() {
+	nums1 := make([]int, 0)
+	for i := 0; i < 5; i++ {
+		nums1 = append(nums1, i)
+	}
+
+	for i := range nums1 {
+		fmt.Println(nums1[i])
+	}
+
+	nums2 := make([]int, 10, 10)
+	for i := 0; i < 5; i++ {
+		nums2 = append(nums2, i)
+	}
+
+	for i := range nums2 {
+		fmt.Println(nums2[i])
+	}
+
+}
