@@ -9,8 +9,8 @@ import (
 	"basis/bulit_in/function"
 	"basis/bulit_in/method"
 	"basis/bulit_in/oop"
+	"basis/bulit_in/time"
 	"fmt"
-	"unicode"
 )
 
 func main() {
@@ -28,12 +28,11 @@ func main() {
 	//testOo()
 	//testSelect()
 	//TestChannel()
-	fmt.Println(unicode.IsPunct('，'))
-	fmt.Println(unicode.IsPunct(','))
-	fmt.Println(unicode.IsPunct('!'))
-	fmt.Println(unicode.IsPunct('a'))
-	fmt.Println(unicode.IsPunct('9'))
-	fmt.Println(unicode.IsPunct('。'))
+	TestTime()
+}
+
+func TestTime() {
+	time.GetYesterdayTime()
 }
 
 func testConsts() {
@@ -61,7 +60,8 @@ func testSlice() {
 	// code.SliceResizeTest()
 	// code.SliceStringTest()
 	//code.SliceChangeStringTest2()
-	code.AppendAndForeachTest()
+	//code.AppendAndForeachTest()
+	code.SplitSlice()
 }
 
 func testMap() {

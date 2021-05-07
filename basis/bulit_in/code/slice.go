@@ -239,3 +239,20 @@ func AppendAndForeachTest() {
 	}
 
 }
+
+func SplitSlice() {
+	s := make([]int, 0)
+	for i := 0; i < 20; i++ {
+		s = append(s, i)
+	}
+	//sub1 := s[:3]
+	//sub2 := s[4:8]
+	//sub3 := s[8:12]
+	//sub4 := s[12:16]
+	//sub5 := s[16:]
+	fmt.Println(s[:4])
+	fmt.Println(s[4:8])
+	fmt.Println(s[8:12])
+	fmt.Println(s[12:16])
+	fmt.Println(s[16:])
+}
