@@ -256,3 +256,16 @@ func SplitSlice() {
 	fmt.Println(s[12:16])
 	fmt.Println(s[16:])
 }
+
+func OutOfCap() {
+	slice := make([]int, 0, 3)
+	for i := 0; i < 6; i++ {
+		slice = append(slice, i)
+	}
+	fmt.Println(slice)
+}
+
+func GetLastElement() {
+	slice := []int{1, 2, 3, 4, 5}
+	fmt.Println(slice[len(slice)-1])
+}

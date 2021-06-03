@@ -17,7 +17,7 @@ func main() {
 	fmt.Println("this is main function")
 	// testConsts()
 	// testIota()
-	//testSlice()
+	testSlice()
 	//testMap()
 	// testStruct()
 	// testSwitch()
@@ -28,7 +28,7 @@ func main() {
 	//testOo()
 	//testSelect()
 	//TestChannel()
-	TestTime()
+	//TestTime()
 }
 
 func TestTime() {
@@ -61,7 +61,8 @@ func testSlice() {
 	// code.SliceStringTest()
 	//code.SliceChangeStringTest2()
 	//code.AppendAndForeachTest()
-	code.SplitSlice()
+	//code.SplitSlice()
+	code.OutOfCap()
 }
 
 func testMap() {
