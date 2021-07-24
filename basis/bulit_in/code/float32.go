@@ -16,3 +16,7 @@ func convertFloat322DoubleInt(num float32) {
 	z := atoi
 	fmt.Printf("x: %d, z: %d \n", x, z)
 }
+
+func FormatFloat(num int) {
+	fmt.Println(strconv.FormatFloat(float64(num/1000), 'f', 1, 64))
+}

@@ -33,3 +33,16 @@ func MarshalTest() {
 	}
 	fmt.Println(string(marshal))
 }
+
+type Container struct {
+	Code string `json:"code"`
+}
+
+func UnmarshalTest() {
+	val := "{\"code\": \"skdlaskdl\"}"
+	var con Container
+	err := json.Unmarshal([]byte(val), &con)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}

@@ -16,9 +16,14 @@ func GetYesterdayTime() {
 }
 
 func Now() {
-	fmt.Println(time.Now().UnixNano())
-	time.Sleep(1 * time.Second)
-	fmt.Println(time.Now().UnixNano())
+	//fmt.Println(time.Now().UnixNano())
+	//time.Sleep(1 * time.Second)
+	//fmt.Println(time.Now().UnixNano())
+	//fmt.Println(time.Now().Unix())
+	//time.Sleep(1 * time.Second)
+	//fmt.Println(time.Now().Unix())
+	priority := 1
+	fmt.Println(int64(priority*10000000000) + time.Now().Unix())
 }
 
 func DatetimeSerialization() string {

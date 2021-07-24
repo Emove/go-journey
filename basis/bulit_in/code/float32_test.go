@@ -21,3 +21,7 @@ func Test_convertFloat322DoubleInt(t *testing.T) {
 	convertFloat322DoubleInt(3.01)
 	convertFloat322DoubleInt(3.02)
 }
+
+func TestFormatFloat(t *testing.T) {
+	FormatFloat(5000)
+}

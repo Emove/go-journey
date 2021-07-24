@@ -269,3 +269,14 @@ func GetLastElement() {
 	slice := []int{1, 2, 3, 4, 5}
 	fmt.Println(slice[len(slice)-1])
 }
+
+func IfCopyWhenForeachSlice() {
+	numSlice := []int{1, 2, 3, 4}
+	for _, num := range numSlice {
+		// 根据结果，应该是发生了拷贝，把值赋给了num，每次输出的地址都是一致的
+		fmt.Printf("value: %d, address: %p\n", num, &num)
+	}
+	for i := range numSlice {
+		fmt.Printf("value: %d, address: %p\n", numSlice[i], &numSlice[i])
+	}
+}

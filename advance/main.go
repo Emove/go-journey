@@ -1,8 +1,7 @@
 package main
 
 import (
-	"advance/code"
-	"time"
+	"fmt"
 )
 
 func main() {
@@ -10,6 +9,16 @@ func main() {
 	//code.DeadlineContext()
 	//code.TimeoutContext()
 	//code.SetValue()
-	code.LogInfo()
-	time.Sleep(5 * time.Second)
+	//code.LogInfo()
+	//time.Sleep(5 * time.Second)
+
+	i := 10
+	j := hello(&i)
+	fmt.Println(i, j)
+}
+func hello(i *int) (j int) {
+	defer func() {
+		j = 19
+	}()
+	return *i
 }

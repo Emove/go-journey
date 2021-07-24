@@ -9,3 +9,7 @@ func TestGetLastElement(t *testing.T) {
 func TestSliceStringTest(t *testing.T) {
 	SliceStringTest()
 }
+
+func TestIfCopyWhenForeachSlice(t *testing.T) {
+	IfCopyWhenForeachSlice()
+}

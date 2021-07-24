@@ -13,7 +13,7 @@ import (
 func main() {
 	// 启动redis实例
 	client := redis.NewClient(&redis.Options{
-		Addr:         "192.168.246.129:6379",
+		Addr:         "192.168.1.234:6380",
 		DB:           0,
 		DialTimeout:  10 * time.Second,
 		ReadTimeout:  30 * time.Second,
@@ -21,8 +21,23 @@ func main() {
 		PoolSize:     100,
 		PoolTimeout:  30 * time.Second,
 	})
-	createKeys(client)
-	scanKeys(client)
+	//createKeys(client)
+	//scanKeys(client)
+	rpush(client)
+}
+
+func rpush(client *redis.Client) {
+	key := "queue:test"
+	client.Del(client.Context(), key)
+	push := client.RPush(client.Context(), key, "001")
+	result, _ := push.Result()
+	fmt.Println(result)
+	client.RPush(client.Context(), key, "002")
+	client.RPush(client.Context(), key, "003")
+	client.RPop(client.Context(), key)
+	push = client.RPush(client.Context(), key, "004")
+	result, _ = push.Result()
+	fmt.Println(result)
 }
 
 func createKeys(client *redis.Client) {

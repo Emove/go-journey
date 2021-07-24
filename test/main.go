@@ -1,9 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func main() {
-	fmt.Println(CatchOrDropCheck(6, 1))
+	//fmt.Println(nil == &Test{
+	//	Name: "1",
+	//})
+	//fmt.Println(CatchOrDropCheck(6, 1))
+	for i := 0; i < 4; i++ {
+		fmt.Println(rand.Intn(2))
+	}
+}
+
+type Test struct {
+	Name string
 }
 
 func CatchOrDropCheck(x, y int) bool {
