@@ -250,7 +250,7 @@ func SplitSlice() {
 	//sub3 := s[8:12]
 	//sub4 := s[12:16]
 	//sub5 := s[16:]
-	fmt.Println(s[:4])
+	fmt.Println(s[:3])
 	fmt.Println(s[4:8])
 	fmt.Println(s[8:12])
 	fmt.Println(s[12:16])
@@ -278,5 +278,33 @@ func IfCopyWhenForeachSlice() {
 	}
 	for i := range numSlice {
 		fmt.Printf("value: %d, address: %p\n", numSlice[i], &numSlice[i])
+	}
+}
+
+func RemoveOnForeach() {
+	type info struct {
+		id  int
+		del bool
+	}
+	infos := make([]*info, 0)
+	for i := 0; i < 10; i++ {
+		info := &info{id: i}
+		if i%2 == 0 {
+			info.del = false
+		} else {
+			info.del = true
+		}
+		infos = append(infos, info)
+	}
+	for i := 0; i < len(infos); {
+		info := infos[i]
+		if info.del {
+			infos = append(infos[:i], infos[i+1:]...)
+		} else {
+			i++
+		}
+	}
+	for i := range infos {
+		fmt.Printf("%+v", infos[i])
 	}
 }

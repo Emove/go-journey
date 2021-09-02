@@ -13,3 +13,11 @@ func TestSliceStringTest(t *testing.T) {
 func TestIfCopyWhenForeachSlice(t *testing.T) {
 	IfCopyWhenForeachSlice()
 }
+
+func TestSplitSlice(t *testing.T) {
+	SplitSlice()
+}
+
+func TestRemoveOnForeach(t *testing.T) {
+	RemoveOnForeach()
+}

@@ -7,18 +7,23 @@ import (
 )
 
 func DeadlineContext() {
-	d := time.Now().Add(4 * time.Second)
+	d := time.Now().Add(1 * time.Second)
 	deadline, cancelFunc := context.WithDeadline(context.Background(), d)
 	//defer fmt.Println(deadline.Value())
-	defer cancelFunc()
+	defer func() {
+		cancelFunc()
+	}()
 
 	value := 0
 	select {
 	case <-time.After(1 * time.Second):
 		value++
-	case <-deadline.Done():
+	case val := <-deadline.Done():
+		fmt.Println(val)
+		fmt.Println(deadline.Err().Error())
 		deadline.Value(value)
 	}
+
 }
 
 func TimeoutContext() {
@@ -27,7 +32,8 @@ func TimeoutContext() {
 	go func() {
 		for {
 			select {
-			case <-timeout.Done():
+			case value := <-timeout.Done():
+				fmt.Println(value)
 				return
 			default:
 				//time.AfterFunc(1 * time.Second, func() {
