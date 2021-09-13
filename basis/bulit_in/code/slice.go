@@ -308,3 +308,16 @@ func RemoveOnForeach() {
 		fmt.Printf("%+v", infos[i])
 	}
 }
+
+func LenOfSkipSlice() {
+	s := make([]string, 5, 5)
+	s[1] = "1"
+	s[3] = "2"
+	//s[4] = "4"
+
+	s1 := s[1:]
+	for _, v := range s1 {
+		fmt.Println(v)
+	}
+	fmt.Println(cap(s1))
+}

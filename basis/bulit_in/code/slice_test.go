@@ -21,3 +21,7 @@ func TestSplitSlice(t *testing.T) {
 func TestRemoveOnForeach(t *testing.T) {
 	RemoveOnForeach()
 }
+
+func TestLenOfSkipSlice(t *testing.T) {
+	LenOfSkipSlice()
+}
