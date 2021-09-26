@@ -1,4 +1,4 @@
-package Number_of_Boomerangs_447
+package number_of_boomerangs_447
 
 import (
 	"fmt"
