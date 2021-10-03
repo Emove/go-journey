@@ -13,7 +13,7 @@ func NewListNode(val int) *ListNode {
 
 func BuildListNode(nums []int) *ListNode {
 	if len(nums) == 0 {
-		return &ListNode{}
+		return nil
 	}
 	head := NewListNode(nums[0])
 	point := head
