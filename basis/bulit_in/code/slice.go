@@ -321,3 +321,15 @@ func LenOfSkipSlice() {
 	}
 	fmt.Println(cap(s1))
 }
+
+func LenOfSlice() {
+	s := []int{0, 1, 2, 3, 4, 5}
+	fmt.Println(len(s))
+
+	s = append(s, 6, 7)
+
+	s = s[6:]
+
+	fmt.Println(len(s))
+	fmt.Println(s[0])
+}
