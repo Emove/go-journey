@@ -4,13 +4,13 @@ func maxAreaOfIsland(grid [][]int) int {
 	ans := 0
 	depth := len(grid)
 	width := len(grid[0])
+
 	for i := 0; i < depth; i++ {
 		for j := 0; j < width; j++ {
-			if grid[i][j] == 1 {
-				ans = max(ans, dfs(grid, i, j, depth, width))
-			}
+			ans = max(ans, dfs(grid, i, j, depth, width))
 		}
 	}
+
 	return ans
 }
 
