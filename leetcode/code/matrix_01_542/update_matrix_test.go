@@ -26,7 +26,7 @@ func Test_updateMatrix(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := updateMatrix(tt.args.matrix)
+			got := UpdateMatrix(tt.args.matrix)
 			want := tt.want
 			for i := 0; i < len(want); i++ {
 				for j := 0; j < len(want[0]); j++ {

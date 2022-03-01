@@ -2,7 +2,7 @@ package matrix_01_542
 
 import "math"
 
-func updateMatrix(mat [][]int) [][]int {
+func UpdateMatrix(mat [][]int) [][]int {
 	depth := len(mat)
 	width := len(mat[0])
 
