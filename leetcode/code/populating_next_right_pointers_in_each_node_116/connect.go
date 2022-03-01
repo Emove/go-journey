@@ -8,6 +8,7 @@ func connect(node *structure.Node) *structure.Node {
 	if node == nil {
 		return nil
 	}
+
 	layer := node
 	for layer.Left != nil {
 		pointer := layer
