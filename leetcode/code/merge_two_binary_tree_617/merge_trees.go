@@ -19,7 +19,7 @@ func merge(node1, node2 *structure.TreeNode) *structure.TreeNode {
 		Val: node1.Val + node2.Val,
 	}
 
-	node.Left = mergeTrees(node1.Left, node2.Left)
-	node.Right = mergeTrees(node1.Right, node2.Right)
+	node.Left = merge(node1.Left, node2.Left)
+	node.Right = merge(node1.Right, node2.Right)
 	return node
 }
