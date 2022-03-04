@@ -333,3 +333,12 @@ func LenOfSlice() {
 	fmt.Println(len(s))
 	fmt.Println(s[0])
 }
+
+// 将切片中数据后移，并把最后一位移到第一位
+func MoveBackwardTest() {
+	s := []int{0, 1, 2, 3, 4}
+	last := s[len(s)-1]
+	copy(s[1:], s)
+	s[0] = last
+	fmt.Printf("%v", s)
+}

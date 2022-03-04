@@ -29,3 +29,7 @@ func TestLenOfSkipSlice(t *testing.T) {
 func TestLenOfSlice(t *testing.T) {
 	LenOfSlice()
 }
+
+func TestMoveBackwardTest(t *testing.T) {
+	MoveBackwardTest()
+}
