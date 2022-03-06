@@ -30,7 +30,7 @@ func Test_findLUSlength(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := findLUSlength(tt.args.a, tt.args.b); got != tt.want {
+			if got := FindLUSlength(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("findLUSlength() = %v, want %v", got, tt.want)
 			}
 		})
