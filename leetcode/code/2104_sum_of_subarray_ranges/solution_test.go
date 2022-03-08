@@ -29,14 +29,14 @@ func Test_subArrayRanges(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAns := subArrayRanges(tt.args.nums); gotAns != tt.wantAns {
+			if gotAns := SubArrayRanges(tt.args.nums); gotAns != tt.wantAns {
 				t.Errorf("subArrayRanges() = %v, want %v", gotAns, tt.wantAns)
 			}
 		})
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAns := subArrayRanges1(tt.args.nums); gotAns != tt.wantAns {
+			if gotAns := SubArrayRanges1(tt.args.nums); gotAns != tt.wantAns {
 				t.Errorf("subArrayRanges() = %v, want %v", gotAns, tt.wantAns)
 			}
 		})

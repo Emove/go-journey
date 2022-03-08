@@ -1,6 +1,6 @@
 package sum_of_subarray_ranges_2104
 
-func subArrayRanges(nums []int) (ans int64) {
+func SubArrayRanges(nums []int) (ans int64) {
 	for i, num := range nums {
 		maxVal, minVal := num, num
 		for _, v := range nums[i+1:] {
@@ -16,7 +16,7 @@ func subArrayRanges(nums []int) (ans int64) {
 }
 
 // 单调栈解法
-func subArrayRanges1(nums []int) int64 {
+func SubArrayRanges1(nums []int) int64 {
 	n := len(nums)
 	minLeft := make([]int, n)
 	maxLeft := make([]int, n)
