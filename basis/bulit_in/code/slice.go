@@ -342,3 +342,18 @@ func MoveBackwardTest() {
 	s[0] = last
 	fmt.Printf("%v", s)
 }
+
+func Delete() {
+	s := []int{0, 1, 2, 3, 4}
+	//s1 := make([]int, len(s)-1-2)
+	//copy(s1, s[:2])
+	//s1 = append(s1, s[3:]...)
+	//fmt.Println(s1)
+
+	//temp := s[:2]
+	//temp = append(temp, s[3:]...)
+	//fmt.Println(temp)
+
+	s = append(s[:2], s[3:]...)
+	fmt.Println(s)
+}

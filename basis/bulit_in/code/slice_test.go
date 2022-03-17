@@ -33,3 +33,11 @@ func TestLenOfSlice(t *testing.T) {
 func TestMoveBackwardTest(t *testing.T) {
 	MoveBackwardTest()
 }
+
+func TestSliceCopyTest(t *testing.T) {
+	SliceCopyTest()
+}
+
+func TestDelete(t *testing.T) {
+	Delete()
+}
