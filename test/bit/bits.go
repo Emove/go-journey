@@ -16,3 +16,9 @@ func FormatInt() {
 	fmt.Println(strconv.FormatInt(int64(7), 2))
 	fmt.Println(strconv.FormatInt(int64(-7), 2))
 }
+
+func Odd() {
+	for i := 0; i < 5; i++ {
+		fmt.Println(i & 1)
+	}
+}

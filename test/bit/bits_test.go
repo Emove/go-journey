@@ -9,3 +9,7 @@ func TestLowest(t *testing.T) {
 func TestFormatInt(t *testing.T) {
 	FormatInt()
 }
+
+func TestOdd(t *testing.T) {
+	Odd()
+}
