@@ -1,11 +1,11 @@
 package _20_longest_world_in_dictionary
 
 import (
-	"leetcode/code/structure/trie"
+	trie2 "leetcode/code/alg/trie"
 )
 
 func LongestWorld(words []string) string {
-	root := trie.NewTrieNode()
+	root := trie2.NewTrieNode()
 	for _, word := range words {
 		root.Insert(word)
 	}
