@@ -6,6 +6,9 @@ import (
 
 func LevelOrder(root *structure.N_Node) [][]int {
 	ans := make([][]int, 0)
+	if root == nil {
+		return ans
+	}
 	queue := make([]*structure.N_Node, 1)
 	queue[0] = root
 	for queue != nil {
