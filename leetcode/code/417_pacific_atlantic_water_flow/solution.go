@@ -10,6 +10,7 @@ func PacificAtlantic(heights [][]int) [][]int {
 	for i := 0; i < m; i++ {
 		pacific[i] = make([]bool, n)
 		atlantic[i] = make([]bool, n)
+
 		pacific[i][0] = true
 		pacificQueue[i] = []int{i, 0}
 
