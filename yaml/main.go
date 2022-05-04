@@ -18,7 +18,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	defer fd.Close()
+	defer func(fd *os.File) {
+		_ = fd.Close()
+	}(fd)
 
 	service := &conf.ServiceConfig{}
 	err = yaml.NewDecoder(fd).Decode(service)
