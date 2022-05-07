@@ -3,7 +3,7 @@ package proxy
 import "fmt"
 
 type Client struct {
-	db DbClient
+	db *DbClient
 }
 
 func (dao Client) update() (int, error) {
@@ -56,8 +56,8 @@ func (TransactionManager) close() {
 
 func NewClient() Client {
 	return Client{
-		db: DbClient{
-			tx: TransactionManager{},
+		db: &DbClient{
+			tx: &TransactionManager{},
 		},
 	}
 }
