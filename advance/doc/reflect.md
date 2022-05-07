@@ -16,7 +16,7 @@
 
 - reflect包封装了反射相关的方法
 - 获取类型信息：reflect.TypeOf是静态的
-- 获取值西悉尼：reflect.ValueOf是动态的
+- 获取值信息：reflect.ValueOf是动态的
 
 ## 3、空接口与反射
 

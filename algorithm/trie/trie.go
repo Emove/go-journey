@@ -1,5 +1,6 @@
 package trie
 
+// TrieNode 字典树
 type TrieNode struct {
 	end      bool
 	word     string
