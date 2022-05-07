@@ -1,6 +1,8 @@
 package builder
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Builder interface {
 	PartA()
@@ -29,11 +31,15 @@ type ComputerBuilder struct {
 }
 
 func (builder *ComputerBuilder) PartA() {
-	fmt.Println("the main board assemble finish")
+	if !builder.finished {
+		fmt.Println("the main board assemble finish")
+	}
 }
 
 func (builder *ComputerBuilder) PartB() {
-	fmt.Println("the battery assemble finish")
+	if !builder.finished {
+		fmt.Println("the battery assemble finish")
+	}
 }
 
 func (builder *ComputerBuilder) PartC() {
