@@ -1,0 +1,3 @@
+conn:
+  max_con: 1024
+  max_idle: 256
