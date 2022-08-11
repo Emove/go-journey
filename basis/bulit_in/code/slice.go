@@ -373,6 +373,16 @@ func ValueCopy() {
 
 }
 
+func Clear() {
+	s := make([]int, 4)
+	for i := 0; i < 4; i++ {
+		s[i] = i
+	}
+	fmt.Printf("before clear: len: %d, cap: %d, content: %v\n", len(s), cap(s), s)
+	s = s[:0]
+	fmt.Printf("after clear: len: %d, cap: %d, content: %v\n", len(s), cap(s), s)
+}
+
 func add(arr []int) {
 	for i := 0; i < 3; i++ {
 		arr = append(arr, i)

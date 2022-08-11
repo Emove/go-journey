@@ -49,3 +49,7 @@ func TestAppendToInterface(t *testing.T) {
 func TestValueCopy(t *testing.T) {
 	ValueCopy()
 }
+
+func TestClear(t *testing.T) {
+	Clear()
+}
