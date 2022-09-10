@@ -25,3 +25,7 @@ func TestCloseAClosedChannel(t *testing.T) {
 func TestReceiveFromEmptyChannel(t *testing.T) {
 	ReceiveFromEmptyChannel()
 }
+
+func TestCloseBlockChannel(t *testing.T) {
+	CloseBlockChannel()
+}

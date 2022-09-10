@@ -54,6 +54,23 @@ func receive(in chan int) {
 	}
 }
 
+func CloseBlockChannel() {
+	ch := make(chan int)
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		close(ch)
+	}()
+
+	for {
+		select {
+		case <-ch:
+			fmt.Println("receive")
+			return
+		}
+	}
+}
+
 // GetDataFromChannel test put data to ch1 then get the data from ch2
 func GetDataFromChannel() {
 	ch1 := make(chan int)
@@ -115,9 +132,4 @@ func printer(in <-chan int) {
 	for i := range in {
 		fmt.Println(i)
 	}
-}
-
-func CustomerCh() {
-	//ch:=make(chan cmd.Cmd)
-	//safeSend()
 }
