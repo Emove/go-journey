@@ -383,6 +383,16 @@ func Clear() {
 	fmt.Printf("after clear: len: %d, cap: %d, content: %v\n", len(s), cap(s), s)
 }
 
+func Append2Nil() {
+	var s []interface{}
+	a := append(s)
+
+	fmt.Printf("a: %v\n", a)
+
+	b := append(s, "1")
+	fmt.Printf("b: %v\n", b)
+}
+
 func add(arr []int) {
 	for i := 0; i < 3; i++ {
 		arr = append(arr, i)

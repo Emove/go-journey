@@ -53,3 +53,7 @@ func TestValueCopy(t *testing.T) {
 func TestClear(t *testing.T) {
 	Clear()
 }
+
+func TestAppend2Nil(t *testing.T) {
+	Append2Nil()
+}
