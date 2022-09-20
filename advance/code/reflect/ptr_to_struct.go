@@ -38,3 +38,19 @@ func ConvertPtr2struct() {
 	field = indirect.Field(0)
 	fmt.Println(field.Int())
 }
+
+func Convert() {
+	p := &MyStruct{
+		A: 4,
+		B: []int{5, 6},
+	}
+	t := reflect.TypeOf(p)
+	if t.Kind() == reflect.Ptr {
+		t2 := reflect.Indirect(reflect.ValueOf(p)).Type()
+		if t2.Kind() == reflect.Struct {
+			fmt.Println("converted")
+			fmt.Printf("%v\n", t2.Name())
+		}
+	}
+
+}
