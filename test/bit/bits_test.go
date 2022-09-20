@@ -29,3 +29,11 @@ func TestToByte(t *testing.T) {
 	//}
 	//fmt.Println(parseInt1)
 }
+
+func TestXOR(t *testing.T) {
+	XOR()
+}
+
+func TestAND(t *testing.T) {
+	AND()
+}
