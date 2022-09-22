@@ -1,0 +1,14 @@
+times: 1000, add 1000 func per time, i: 0
+total nums: 1000000, base duration: 10ms, average diff: 10, elapsed: 25375ms
+
+times: 100, add 10000 func per time, i: 0
+total nums: 1000000, base duration: 10ms, average diff: 12, elapsed: 2427ms
+
+times: 3000, add 3333 func per time, i: 1000
+total nums: 10000000, base duration: 10ms, average diff: 9, elapsed: 73257ms
+
+times: 1000, add 30000 func per time, i: 0
+total nums: 30000000, base duration: 10ms, average diff: 39, elapsed: 22092ms
+
+times: 3000, add 33333 func per time, i: 1000
+total nums: 100000000, base duration: 10ms, average diff: 4849, elapsed: 49794ms
