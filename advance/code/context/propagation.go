@@ -54,3 +54,22 @@ func StopParallelGoroutine() {
 
 	time.Sleep(10 * time.Second)
 }
+
+// conclusion: child context done does not effect parent context
+func CancelByChildrenContext() {
+	ctx := context.Background()
+
+	timeout, cancelFunc := context.WithTimeout(ctx, 2*time.Second)
+	go func() {
+		select {
+		case <-timeout.Done():
+			fmt.Println("child context done")
+			cancelFunc()
+		}
+	}()
+
+	select {
+	case <-ctx.Done():
+		fmt.Printf("parent context done")
+	}
+}

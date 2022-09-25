@@ -9,3 +9,7 @@ func TestContextPropagation(t *testing.T) {
 func TestStopParallelGoroutine(t *testing.T) {
 	StopParallelGoroutine()
 }
+
+func TestCancelByChildrenContext(t *testing.T) {
+	CancelByChildrenContext()
+}
