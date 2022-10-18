@@ -29,3 +29,7 @@ func TestReceiveFromEmptyChannel(t *testing.T) {
 func TestCloseBlockChannel(t *testing.T) {
 	CloseBlockChannel()
 }
+
+func TestIsChannelWaiterSeq(t *testing.T) {
+	IsChannelWaiterSeq()
+}

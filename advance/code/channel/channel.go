@@ -2,6 +2,7 @@ package channel
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -111,6 +112,26 @@ func TestSingleTrackChannel() {
 	go squarer(ch2, ch1)
 	printer(ch2)
 
+}
+
+func IsChannelWaiterSeq() {
+	ch := make(chan int, 1)
+	wg := sync.WaitGroup{}
+	wg.Add(20)
+	for i := 0; i < 20; i++ {
+		go func(id int) {
+			wg.Done()
+			select {
+			case num := <-ch:
+				fmt.Printf("id: %d\n", id)
+				ch <- num
+				break
+			}
+		}(i)
+	}
+
+	wg.Wait()
+	ch <- 1
 }
 
 func counter(out chan<- int) {
