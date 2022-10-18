@@ -116,6 +116,7 @@ func TestSingleTrackChannel() {
 
 func IsChannelWaiterSeq() {
 	ch := make(chan int, 1)
+	seq := make(chan int)
 	wg := sync.WaitGroup{}
 	wg.Add(20)
 	for i := 0; i < 20; i++ {
@@ -123,8 +124,8 @@ func IsChannelWaiterSeq() {
 			wg.Done()
 			select {
 			case num := <-ch:
-				fmt.Printf("id: %d\n", id)
 				ch <- num
+				seq <- id
 				break
 			}
 		}(i)
@@ -132,6 +133,12 @@ func IsChannelWaiterSeq() {
 
 	wg.Wait()
 	ch <- 1
+	for {
+		select {
+		case i := <-seq:
+			fmt.Println(i)
+		}
+	}
 }
 
 func counter(out chan<- int) {
