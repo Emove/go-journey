@@ -69,3 +69,12 @@ func SliceMapTest() {
 	sliceMap[key] = value
 	fmt.Println(sliceMap)
 }
+
+func LenOfMap() {
+	m := make(map[int]struct{})
+	for i := 0; i < 3; i++ {
+		m[i] = struct{}{}
+	}
+
+	fmt.Println(len(m))
+}
