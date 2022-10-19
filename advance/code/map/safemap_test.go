@@ -79,6 +79,19 @@ func BenchmarkDeleteSyncM(b *testing.B) {
 // ---------------------------------------  total in average: 290 + 2 + 2 = 294ns -------------------------------------------- //
 
 // 208 ns/op
+func BenchmarkWriteReadDeleteMM(b *testing.B) {
+	b.RunParallel(func(pb *testing.PB) {
+		r := rand.New(rand.NewSource(time.Now().UnixNano()))
+		for pb.Next() {
+			k := r.Intn(IN)
+			WriteMM(k)
+			ReadMM(k)
+			DeleteMM(k)
+		}
+	})
+}
+
+// 208 ns/op
 func BenchmarkWriteReadDeleteRWM(b *testing.B) {
 	b.RunParallel(func(pb *testing.PB) {
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
