@@ -6,6 +6,7 @@ package code
 
 import (
 	"fmt"
+	"sync/atomic"
 	"time"
 )
 
@@ -47,4 +48,90 @@ func BlockChannel() {
 	case <-stop:
 		return
 	}
+}
+
+func IsSelectBlocking() {
+
+	timer := time.NewTimer(time.Second)
+
+	for i := 0; i < 5; i++ {
+
+		select {
+		case <-timer.C:
+			return
+		default:
+		}
+
+		fmt.Println(i)
+		time.Sleep(200 * time.Millisecond)
+	}
+
+}
+
+func ClosingByDefault() {
+
+	ch := make(chan int, 10)
+
+	go func() {
+		time.Sleep(1 * time.Millisecond)
+		for i := 0; i < 10; i++ {
+			go func(i int) {
+				ch <- i
+			}(i)
+		}
+	}()
+
+	closed := int32(0)
+	go func() {
+		time.Sleep(1 * time.Second)
+		atomic.StoreInt32(&closed, 1)
+	}()
+
+	for {
+		select {
+		case num := <-ch:
+			fmt.Println(num)
+			time.Sleep(200 * time.Millisecond)
+		default:
+			if atomic.LoadInt32(&closed) == 1 && len(ch) == 0 {
+				close(ch)
+				return
+			}
+		}
+	}
+
+}
+
+func ForeachChannel() {
+	ch := make(chan int, 10)
+	for i := 0; i < 10; i++ {
+		ch <- i
+	}
+
+	for len(ch) > 0 {
+		fmt.Println(<-ch)
+	}
+
+}
+
+func LenTheClosedChannel() {
+	var ch chan int
+
+	fmt.Printf("len of a nil channel: %d\n", len(ch))
+
+	ch = make(chan int, 10)
+
+	go func() {
+		for len(ch) > 0 {
+			fmt.Println(<-ch)
+			time.Sleep(10 * time.Millisecond)
+		}
+	}()
+
+	for i := 0; i < 10; i++ {
+		ch <- i
+	}
+
+	close(ch)
+	time.Sleep(time.Second)
 }
