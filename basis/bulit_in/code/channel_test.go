@@ -21,3 +21,7 @@ func TestForeachChannel(t *testing.T) {
 func TestLenTheClosedChannel(t *testing.T) {
 	LenTheClosedChannel()
 }
+
+func TestReadFromClosedChannel(t *testing.T) {
+	ReadFromClosedChannel()
+}

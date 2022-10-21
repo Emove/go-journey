@@ -135,3 +135,22 @@ func LenTheClosedChannel() {
 	close(ch)
 	time.Sleep(time.Second)
 }
+
+func ReadFromClosedChannel() {
+	ch := make(chan int, 10)
+
+	go func() {
+		for {
+			i, ok := <-ch
+			fmt.Println(i, "--", ok)
+			time.Sleep(20 * time.Millisecond)
+		}
+	}()
+
+	for i := 0; i < 10; i++ {
+		ch <- i
+	}
+
+	close(ch)
+	time.Sleep(time.Second)
+}
