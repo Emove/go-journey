@@ -39,3 +39,11 @@ func LoadOrStore() {
 	fmt.Printf("loaded: %v, value: %v\n", loaded, store)
 
 }
+
+func RangeEmptyMap() {
+	m := sync.Map{}
+	m.Range(func(key, value interface{}) bool {
+		fmt.Printf("key: %v, value: %v", key, value)
+		return true
+	})
+}
