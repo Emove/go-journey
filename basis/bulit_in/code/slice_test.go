@@ -22,6 +22,10 @@ func TestRemoveOnForeach(t *testing.T) {
 	RemoveOnForeach()
 }
 
+func TestRemoveTheLastOne(t *testing.T) {
+	RemoveTheLastOne()
+}
+
 func TestLenOfSkipSlice(t *testing.T) {
 	LenOfSkipSlice()
 }

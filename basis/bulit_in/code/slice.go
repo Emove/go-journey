@@ -309,6 +309,12 @@ func RemoveOnForeach() {
 	}
 }
 
+func RemoveTheLastOne() {
+	s := []int{1, 2}
+	s = append(s[0:1], s[2:]...)
+	fmt.Printf("%v\n", s)
+}
+
 func LenOfSkipSlice() {
 	s := make([]string, 5, 5)
 	s[1] = "1"
@@ -356,6 +362,7 @@ func Delete() {
 
 	s = append(s[:2], s[3:]...)
 	fmt.Println(s)
+	fmt.Println(len(s))
 }
 
 func AppendToInterface() {
