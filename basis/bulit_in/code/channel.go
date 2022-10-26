@@ -6,6 +6,7 @@ package code
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
 	"time"
 )
@@ -153,4 +154,17 @@ func ReadFromClosedChannel() {
 
 	close(ch)
 	time.Sleep(time.Second)
+}
+
+func ConvertFromInterface() {
+	m := sync.Map{}
+
+	ch := make(chan int)
+
+	m.Store("ch", ch)
+
+	load, _ := m.Load("ch")
+	ok := false
+	ch, ok = load.(chan int)
+	fmt.Printf("ch: %v, ok: %v", ch, ok)
 }

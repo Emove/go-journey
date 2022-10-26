@@ -25,3 +25,7 @@ func TestLenTheClosedChannel(t *testing.T) {
 func TestReadFromClosedChannel(t *testing.T) {
 	ReadFromClosedChannel()
 }
+
+func TestConvertFromInterface(t *testing.T) {
+	ConvertFromInterface()
+}
