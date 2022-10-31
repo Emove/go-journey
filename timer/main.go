@@ -22,26 +22,26 @@ var wg *sync.WaitGroup
 
 func main() {
 
-	nums, d := int64(1e6*30), 10*time.Second
+	nums, d := int64(1e6*10), 10*time.Second
 	total = nums
 	prepare(nums)
 	wg = &sync.WaitGroup{}
 	start := time.Now()
-	//do("std", nums, d, func(c *Case) {
-	//	wg.Add(1)
-	//	time.AfterFunc(c.Duration, func() {
-	//		c.EndAt = time.Now().UnixMilli()
-	//		Queue <- c
-	//	})
-	//})
-	//
-	//wg.Wait()
-	//fmt.Printf("total nums: %d, base duration: %s, average diff: %d, elapsed: %dms\n", total, "10ms", totalDiff/total, time.Since(start).Milliseconds())
-	//totalDiff = 0
+	do("std", nums, d, func(c *Case) {
+		wg.Add(1)
+		time.AfterFunc(c.Duration, func() {
+			c.EndAt = time.Now().UnixMilli()
+			Queue <- c
+		})
+	})
+
+	wg.Wait()
+	fmt.Printf("total nums: %d, base duration: %s, average diff: %d, elapsed: %dms\n", total, "10ms", totalDiff/total, time.Since(start).Milliseconds())
+	totalDiff = 0
 	antTimer := timer.NewTimer()
 	go antTimer.Run()
 	time.Sleep(1 * time.Second)
-	//start := time.Now()
+	start := time.Now()
 	do("antlabs", nums, d, func(c *Case) {
 		wg.Add(1)
 		antTimer.AfterFunc(c.Duration, func() {
@@ -63,6 +63,16 @@ func do(name string, nums int64, d time.Duration, fn func(c *Case)) {
 	p, i := nums/int64(times), nums%int64(times)
 	fmt.Printf("times: %d, add %d func per time, i: %d\n", times, p, i)
 	ticker := time.NewTicker(10 * time.Millisecond)
+	cnt := 0
+	var second *time.Timer
+	second = time.AfterFunc(time.Second, func() {
+		cnt = 0
+		if cnt > 0 {
+			fmt.Printf("per second count: %d\n", cnt)
+			second.Stop()
+		}
+	})
+
 	for range ticker.C {
 		now := time.Now().UnixMilli()
 		for k := int64(0); k < p; k++ {
@@ -70,9 +80,11 @@ func do(name string, nums int64, d time.Duration, fn func(c *Case)) {
 				d = d - time.Duration(i)
 			}
 			fn(&Case{StartAt: now, Duration: d})
+			cnt++
 		}
 		if i >= 0 {
 			fn(&Case{StartAt: now, Duration: d})
+			cnt++
 			i--
 		}
 		times--
