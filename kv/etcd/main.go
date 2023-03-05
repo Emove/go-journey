@@ -12,7 +12,7 @@ import (
 func main() {
 
 	//addr := []string{"http://etcd-0.etcd.com:2379", "http://etcd-1.etcd.com:2379", "http://etcd-2.etcd.com:2379"}
-	addr := []string{"192.168.204.132:32379"}
+	addr := []string{"localhost:32379"}
 	client, err := cluster.InitClusterClient(addr)
 	if err != nil {
 		log.Fatal(err)
