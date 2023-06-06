@@ -48,6 +48,39 @@ func TimeoutContext() {
 	//cancelFunc()
 }
 
+func CancelBeforeDone(control context.Context) {
+	ctx, cancel := context.WithCancel(context.Background())
+	child, _ := context.WithCancel(ctx)
+	ch := make(chan string, 3)
+	go func() {
+		for {
+			select {
+			case <-child.Done():
+				ch <- "closed by parent"
+				return
+			default:
+			}
+		}
+	}()
+
+	go func() {
+		cancel()
+		ch <- "cancel called."
+	}()
+	for {
+		select {
+		case log := <-ch:
+			fmt.Println(log)
+			time.Sleep(100 * time.Millisecond)
+		case <-control.Done():
+			fmt.Println("timeout.")
+			return
+		default:
+
+		}
+	}
+}
+
 func CancelContext() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel() // 当我们取完需要的整数后调用cancel
