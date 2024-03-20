@@ -13,51 +13,51 @@ import (
 )
 
 func GenerateRsaKeyPair() (*rsa.PrivateKey, *rsa.PublicKey) {
-	privkey, _ := rsa.GenerateKey(rand.Reader, 2048)
-	return privkey, &privkey.PublicKey
+	key, _ := rsa.GenerateKey(rand.Reader, 2048)
+	return key, &key.PublicKey
 }
 
-func ExportRsaPrivateKeyAsPemStr(privkey *rsa.PrivateKey) string {
-	privkey_bytes := x509.MarshalPKCS1PrivateKey(privkey)
-	privkey_pem := pem.EncodeToMemory(
+func StringifyPrivateKey(key *rsa.PrivateKey) string {
+	keyBytes := x509.MarshalPKCS1PrivateKey(key)
+	privateKey := pem.EncodeToMemory(
 		&pem.Block{
 			Type:  "RSA PRIVATE KEY",
-			Bytes: privkey_bytes,
+			Bytes: keyBytes,
 		},
 	)
-	return string(privkey_pem)
+	return string(privateKey)
 }
 
-func ParseRsaPrivateKeyFromPemStr(privPEM string) (*rsa.PrivateKey, error) {
-	block, _ := pem.Decode([]byte(privPEM))
+func ParsePrivateKey(key string) (*rsa.PrivateKey, error) {
+	block, _ := pem.Decode([]byte(key))
 	if block == nil {
 		return nil, errors.New("failed to parse PEM block containing the key")
 	}
 
-	priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	privateKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
 		return nil, err
 	}
 
-	return priv, nil
+	return privateKey, nil
 }
 
-func ExportRsaPublicKeyAsPemStr(pubkey *rsa.PublicKey) (string, error) {
-	pubkey_bytes, err := x509.MarshalPKIXPublicKey(pubkey)
+func StringifyPublicKey(key *rsa.PublicKey) (string, error) {
+	keyBytes, err := x509.MarshalPKIXPublicKey(key)
 	if err != nil {
 		return "", err
 	}
-	pubkey_pem := pem.EncodeToMemory(
+	publicKey := pem.EncodeToMemory(
 		&pem.Block{
 			Type:  "RSA PUBLIC KEY",
-			Bytes: pubkey_bytes,
+			Bytes: keyBytes,
 		},
 	)
 
-	return string(pubkey_pem), nil
+	return string(publicKey), nil
 }
 
-func ParseRsaPublicKeyFromPemStr(pubPEM string) (*rsa.PublicKey, error) {
+func ParsePublicKey(pubPEM string) (*rsa.PublicKey, error) {
 	block, _ := pem.Decode([]byte(pubPEM))
 	if block == nil {
 		return nil, errors.New("failed to parse PEM block containing the key")
@@ -74,7 +74,7 @@ func ParseRsaPublicKeyFromPemStr(pubPEM string) (*rsa.PublicKey, error) {
 	default:
 		break // fall through
 	}
-	return nil, errors.New("Key type is not RSA")
+	return nil, errors.New("key type is not RSA")
 }
 
 func Encrypt(plain string, publicKey *rsa.PublicKey) (string, error) {
@@ -92,22 +92,45 @@ func Decrypt(cipher string, privateKey *rsa.PrivateKey) (string, error) {
 	return string(plain), err
 }
 
+func Sign(msg string, privateKey *rsa.PrivateKey) (string, error) {
+	msgHash := sha512.New()
+	_, err := msgHash.Write([]byte(msg))
+	if err != nil {
+		return "", err
+	}
+	msgHashSum := msgHash.Sum(nil)
+
+	sign, err := rsa.SignPSS(rand.Reader, privateKey, crypto.SHA512, msgHashSum, nil)
+	return string(sign), err
+}
+
+func Verify(msg string, sign string, publicKey *rsa.PublicKey) bool {
+	msgHash := sha512.New()
+	_, err := msgHash.Write([]byte(msg))
+	if err != nil {
+		return false
+	}
+	msgHashSum := msgHash.Sum(nil)
+	err = rsa.VerifyPSS(publicKey, crypto.SHA512, msgHashSum, []byte(sign), nil)
+	return err == nil
+}
+
 func main() {
 	start := time.Now()
 	// Create the keys
 	priv, pub := GenerateRsaKeyPair()
 
 	// Export the keys to pem string
-	priv_pem := ExportRsaPrivateKeyAsPemStr(priv)
-	pub_pem, _ := ExportRsaPublicKeyAsPemStr(pub)
+	priv_pem := StringifyPrivateKey(priv)
+	pub_pem, _ := StringifyPublicKey(pub)
 
 	// Import the keys from pem string
-	priv_parsed, _ := ParseRsaPrivateKeyFromPemStr(priv_pem)
-	pub_parsed, _ := ParseRsaPublicKeyFromPemStr(pub_pem)
+	priv_parsed, _ := ParsePrivateKey(priv_pem)
+	pub_parsed, _ := ParsePublicKey(pub_pem)
 
 	// Export the newly imported keys
-	priv_parsed_pem := ExportRsaPrivateKeyAsPemStr(priv_parsed)
-	pub_parsed_pem, _ := ExportRsaPublicKeyAsPemStr(pub_parsed)
+	priv_parsed_pem := StringifyPrivateKey(priv_parsed)
+	pub_parsed_pem, _ := StringifyPublicKey(pub_parsed)
 
 	fmt.Println(priv_parsed_pem)
 	fmt.Println(pub_parsed_pem)
@@ -126,4 +149,9 @@ func main() {
 	decrypted, _ := Decrypt(cipher, priv)
 	fmt.Println(plain == decrypted)
 	fmt.Println(time.Since(start).Milliseconds())
+
+	sign, _ := Sign(plain, priv)
+	fmt.Println(Verify(plain, sign, pub))
+	plain = "afsdjhasfdjhfasdjhkfajhkasdfjafsjasfdjfjhfdjflkjasdhfsdfhadfhlasjfljakfh1"
+	fmt.Println(Verify(plain, sign, pub))
 }
