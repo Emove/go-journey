@@ -9,7 +9,7 @@ import (
 func main() {
 	engine := gin.Default()
 	engine.GET("/download", download)
-	_ = engine.Run(":8888")
+	_ = engine.Run(":8080")
 }
 
 func download(ctx *gin.Context) {

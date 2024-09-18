@@ -11,7 +11,6 @@ func main() {
 	//code.SetValue()
 	//code.LogInfo()
 	//time.Sleep(5 * time.Second)
-
 	i := 10
 	j := hello(&i)
 	fmt.Println(i, j)

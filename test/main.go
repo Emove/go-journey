@@ -1,14 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"encoding/binary"
+	"fmt"
+)
 
 func main() {
 
-	go func() {
-		panic("goroutine panic")
-	}()
-
-	fmt.Println("main goroutine")
-
-	select {}
+	buf := make([]byte, 4)
+	binary.BigEndian.PutUint32(buf, 76698383)
+	fmt.Println(buf)
 }

@@ -63,7 +63,7 @@ func (UnimplementedHelloServer) mustEmbedUnimplementedHelloServer() {}
 
 // UnsafeHelloServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to HelloServer will
-// result in compilation errors.
+// result.txt in compilation errors.
 type UnsafeHelloServer interface {
 	mustEmbedUnimplementedHelloServer()
 }
