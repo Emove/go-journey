@@ -61,3 +61,7 @@ func TestClear(t *testing.T) {
 func TestAppend2Nil(t *testing.T) {
 	Append2Nil()
 }
+
+func TestAppendEmptySlice(t *testing.T) {
+	AppendEmptySlice()
+}

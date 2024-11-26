@@ -400,6 +400,13 @@ func Append2Nil() {
 	fmt.Printf("b: %v\n", b)
 }
 
+func AppendEmptySlice() {
+	s1 := []int{1}
+	s := make([]int, 0)
+	s1 = append(s1, s...)
+	fmt.Println(s1)
+}
+
 func add(arr []int) {
 	for i := 0; i < 3; i++ {
 		arr = append(arr, i)
