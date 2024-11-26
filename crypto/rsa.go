@@ -9,6 +9,7 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -134,6 +135,8 @@ func main() {
 
 	fmt.Println(priv_parsed_pem)
 	fmt.Println(pub_parsed_pem)
+	fmt.Println(strings.ReplaceAll(pub_parsed_pem, "\n", ""))
+	fmt.Println(priv.E)
 
 	// Check that the exported/imported keys match the original keys
 	if priv_pem != priv_parsed_pem || pub_pem != pub_parsed_pem {

@@ -1,6 +1,6 @@
 package main
 
-import "mq/mqtt"
+import "mq/rabbit"
 
 /**
  * @author Emove
@@ -8,5 +8,10 @@ import "mq/mqtt"
  */
 
 func main() {
-	mqtt.TestMqtt()
+	//mqtt.TestMqtt()
+	rabbit.TestSubscribe()
+	go func() {
+		rabbit.TestPublish()
+	}()
+	select {}
 }

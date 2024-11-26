@@ -46,6 +46,7 @@ func AND() {
 	fmt.Println(2 & 1)
 	fmt.Println(1 & 2)
 	fmt.Println(1 & 1)
+	fmt.Println(0 & 0)
 	fmt.Println(0 & 1)
 	fmt.Println(0 & 2)
 }
