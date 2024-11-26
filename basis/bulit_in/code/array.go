@@ -35,3 +35,9 @@ func printArr(arr *[5]int) {
 		fmt.Println(i, v)
 	}
 }
+
+func ForEach(nums []int) {
+	for _, x := range nums[1 : len(nums)-1] {
+		fmt.Println(x)
+	}
+}
