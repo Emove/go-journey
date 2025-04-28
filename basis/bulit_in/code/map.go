@@ -78,3 +78,11 @@ func LenOfMap() {
 
 	fmt.Println(len(m))
 }
+
+func ReadMapK() {
+	m := make(map[int][]int)
+	for _, v := range m[0] {
+		fmt.Println(v)
+	}
+
+}

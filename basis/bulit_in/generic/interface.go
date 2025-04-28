@@ -64,14 +64,14 @@ func (*intType[T]) Convert(value string) (int, error) {
 	return int(result), nil
 }
 
-var types [][]Type[any]
-
-func IsValidValue(valueType, value string) bool {
-	types = append(types, []Type[bool]{&boolType[bool]{}})
-	for _, validator := range types {
-		if validator.Type() == valueType {
-			return validator.IsValid(value)
-		}
-	}
-	return false
-}
+//var types [][]Type[any]
+//
+//func IsValidValue(valueType, value string) bool {
+//	types = append(types, []Type[bool]{&boolType[bool]{}})
+//	for _, validator := range types {
+//		if validator.Type() == valueType {
+//			return validator.IsValid(value)
+//		}
+//	}
+//	return false
+//}

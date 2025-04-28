@@ -17,3 +17,7 @@ func Div(num int) {
 func Ceil(num int) {
 	fmt.Println(math.Ceil(float64(num) / 2))
 }
+
+func Pow(num, p int) {
+	fmt.Println(math.Pow(float64(num), float64(p)))
+}

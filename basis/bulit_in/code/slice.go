@@ -1,6 +1,10 @@
 package code
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+	"sync"
+)
 
 func CreateSlice() {
 	// 1、声明切片
@@ -309,6 +313,12 @@ func RemoveOnForeach() {
 	}
 }
 
+func RemoveTheFirstOne() {
+	s := []int{1, 2}
+	s = append(s[:0], s[1:]...)
+	fmt.Printf("%v\n", s)
+}
+
 func RemoveTheLastOne() {
 	s := []int{1, 2}
 	s = append(s[0:1], s[2:]...)
@@ -360,9 +370,16 @@ func Delete() {
 	//temp = append(temp, s[3:]...)
 	//fmt.Println(temp)
 
-	s = append(s[:2], s[3:]...)
+	//s = append(s[:2], s[3:]...)
+	//fmt.Println(s)
+	//fmt.Println(len(s))
+	s1 := slices.Delete(s, 2, len(s))
 	fmt.Println(s)
-	fmt.Println(len(s))
+	fmt.Println(s1)
+	//s = slices.Delete(s, 0, 1)
+	//fmt.Println(s)
+	//s = slices.Delete(s, 2, 3)
+	//fmt.Println(s)
 }
 
 func AppendToInterface() {
@@ -371,6 +388,14 @@ func AppendToInterface() {
 	nums3 := append(nums1, nums2)
 	fmt.Println(len(nums3))
 	fmt.Printf("%v\n", nums3)
+}
+
+func AppendToNilSlice() {
+	m := make(map[int][]int)
+	m[0] = append(m[0], 1)
+	for k, v := range m {
+		fmt.Printf("%d --- %d\n", k, v)
+	}
 }
 
 func ValueCopy() {
@@ -412,4 +437,24 @@ func add(arr []int) {
 		arr = append(arr, i)
 	}
 	fmt.Printf("%v\n", arr)
+}
+
+func IsRef(wait1, wait2 *sync.WaitGroup) ([]int, []int) {
+	s := []int{1, 2, 3, 4, 5, 6, 7}
+	s2 := slices.Clone(s)
+	fmt.Println(s)
+	go func() {
+		wait1.Wait()
+		fmt.Println(s)
+		fmt.Println(s2)
+		wait2.Done()
+	}()
+	return s, s2
+}
+
+func ForeachNilSlice() {
+	var s []int
+	for _, v := range s {
+		fmt.Println(v)
+	}
 }

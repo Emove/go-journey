@@ -1,6 +1,9 @@
 package code
 
-import "testing"
+import (
+	"sync"
+	"testing"
+)
 
 func TestGetLastElement(t *testing.T) {
 	GetLastElement()
@@ -64,4 +67,32 @@ func TestAppend2Nil(t *testing.T) {
 
 func TestAppendEmptySlice(t *testing.T) {
 	AppendEmptySlice()
+}
+
+func TestAppendToNilSlice(t *testing.T) {
+	AppendToNilSlice()
+}
+
+func TestRemoveTheFirstOne(t *testing.T) {
+	RemoveTheFirstOne()
+}
+
+func TestPrintVariable(t *testing.T) {
+	PrintVariable()
+}
+
+func TestIsRef(t *testing.T) {
+	wait := &sync.WaitGroup{}
+	wait1 := &sync.WaitGroup{}
+	wait.Add(1)
+	wait1.Add(1)
+	_, s2 := IsRef(wait, wait1)
+	//s1[0] = 100
+	s2[0] = 100
+	wait.Done()
+	wait1.Wait()
+}
+
+func TestForeachNilSlice(t *testing.T) {
+	ForeachNilSlice()
 }

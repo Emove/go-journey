@@ -7,7 +7,6 @@ package main
 import (
 	"basis/bulit_in/code"
 	"basis/bulit_in/function"
-	"basis/bulit_in/generic"
 	"basis/bulit_in/method"
 	"basis/bulit_in/oop"
 	"basis/bulit_in/time"
@@ -30,7 +29,8 @@ func main() {
 	//testSelect()
 	//TestChannel()
 	//TestTime()
-	print(generic.IsValidValue("Bool", "sda"))
+	//print(generic.IsValidValue("Bool", "sda"))
+	//fmt.Println(1 == nil)
 }
 
 func TestTime() {

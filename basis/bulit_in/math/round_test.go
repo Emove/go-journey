@@ -13,3 +13,7 @@ func TestDiv(t *testing.T) {
 func TestCeil(t *testing.T) {
 	Ceil(1801)
 }
+
+func TestPow(t *testing.T) {
+	Pow(2, 10)
+}
